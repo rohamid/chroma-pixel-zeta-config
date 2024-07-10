@@ -71,45 +71,44 @@ void HAL_DCMI_MspInit(DCMI_HandleTypeDef* dcmiHandle)
     /* DCMI clock enable */
     __HAL_RCC_DCMI_CLK_ENABLE();
 
-    __HAL_RCC_GPIOE_CLK_ENABLE();
     __HAL_RCC_GPIOA_CLK_ENABLE();
     __HAL_RCC_GPIOH_CLK_ENABLE();
+    __HAL_RCC_GPIOC_CLK_ENABLE();
     __HAL_RCC_GPIOD_CLK_ENABLE();
-    __HAL_RCC_GPIOG_CLK_ENABLE();
     __HAL_RCC_GPIOI_CLK_ENABLE();
     /**DCMI GPIO Configuration
-    PE4     ------> DCMI_D4
-    PA4     ------> DCMI_HSYNC
     PA6     ------> DCMI_PIXCLK
-    PH9     ------> DCMI_D0
-    PH10     ------> DCMI_D1
+    PH8     ------> DCMI_HSYNC
     PH11     ------> DCMI_D2
     PH12     ------> DCMI_D3
+    PC6     ------> DCMI_D0
+    PC7     ------> DCMI_D1
+    PH14     ------> DCMI_D4
     PD3     ------> DCMI_D5
-    PG9     ------> DCMI_VSYNC
+    PI5     ------> DCMI_VSYNC
     PI6     ------> DCMI_D6
     PI7     ------> DCMI_D7
     */
-    GPIO_InitStruct.Pin = GPIO_PIN_4;
-    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-    GPIO_InitStruct.Alternate = GPIO_AF13_DCMI;
-    HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
-
-    GPIO_InitStruct.Pin = GPIO_PIN_4|GPIO_PIN_6;
+    GPIO_InitStruct.Pin = GPIO_PIN_6;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
     GPIO_InitStruct.Alternate = GPIO_AF13_DCMI;
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-    GPIO_InitStruct.Pin = GPIO_PIN_9|GPIO_PIN_10|GPIO_PIN_11|GPIO_PIN_12;
+    GPIO_InitStruct.Pin = GPIO_PIN_8|GPIO_PIN_11|GPIO_PIN_12|GPIO_PIN_14;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
     GPIO_InitStruct.Alternate = GPIO_AF13_DCMI;
     HAL_GPIO_Init(GPIOH, &GPIO_InitStruct);
+
+    GPIO_InitStruct.Pin = GPIO_PIN_6|GPIO_PIN_7;
+    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+    GPIO_InitStruct.Alternate = GPIO_AF13_DCMI;
+    HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
     GPIO_InitStruct.Pin = GPIO_PIN_3;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
@@ -118,14 +117,7 @@ void HAL_DCMI_MspInit(DCMI_HandleTypeDef* dcmiHandle)
     GPIO_InitStruct.Alternate = GPIO_AF13_DCMI;
     HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
 
-    GPIO_InitStruct.Pin = GPIO_PIN_9;
-    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-    GPIO_InitStruct.Alternate = GPIO_AF13_DCMI;
-    HAL_GPIO_Init(GPIOG, &GPIO_InitStruct);
-
-    GPIO_InitStruct.Pin = GPIO_PIN_6|GPIO_PIN_7;
+    GPIO_InitStruct.Pin = GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -150,29 +142,27 @@ void HAL_DCMI_MspDeInit(DCMI_HandleTypeDef* dcmiHandle)
     __HAL_RCC_DCMI_CLK_DISABLE();
 
     /**DCMI GPIO Configuration
-    PE4     ------> DCMI_D4
-    PA4     ------> DCMI_HSYNC
     PA6     ------> DCMI_PIXCLK
-    PH9     ------> DCMI_D0
-    PH10     ------> DCMI_D1
+    PH8     ------> DCMI_HSYNC
     PH11     ------> DCMI_D2
     PH12     ------> DCMI_D3
+    PC6     ------> DCMI_D0
+    PC7     ------> DCMI_D1
+    PH14     ------> DCMI_D4
     PD3     ------> DCMI_D5
-    PG9     ------> DCMI_VSYNC
+    PI5     ------> DCMI_VSYNC
     PI6     ------> DCMI_D6
     PI7     ------> DCMI_D7
     */
-    HAL_GPIO_DeInit(GPIOE, GPIO_PIN_4);
+    HAL_GPIO_DeInit(GPIOA, GPIO_PIN_6);
 
-    HAL_GPIO_DeInit(GPIOA, GPIO_PIN_4|GPIO_PIN_6);
+    HAL_GPIO_DeInit(GPIOH, GPIO_PIN_8|GPIO_PIN_11|GPIO_PIN_12|GPIO_PIN_14);
 
-    HAL_GPIO_DeInit(GPIOH, GPIO_PIN_9|GPIO_PIN_10|GPIO_PIN_11|GPIO_PIN_12);
+    HAL_GPIO_DeInit(GPIOC, GPIO_PIN_6|GPIO_PIN_7);
 
     HAL_GPIO_DeInit(GPIOD, GPIO_PIN_3);
 
-    HAL_GPIO_DeInit(GPIOG, GPIO_PIN_9);
-
-    HAL_GPIO_DeInit(GPIOI, GPIO_PIN_6|GPIO_PIN_7);
+    HAL_GPIO_DeInit(GPIOI, GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7);
 
   /* USER CODE BEGIN DCMI_MspDeInit 1 */
 

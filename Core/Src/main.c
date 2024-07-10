@@ -107,11 +107,13 @@ int main(void)
   MX_I2S1_Init();
   MX_LTDC_Init();
   MX_QUADSPI_Init();
-  MX_SDMMC1_SD_Init();
   MX_SPI2_Init();
   MX_USART1_UART_Init();
   MX_USART2_UART_Init();
   MX_USB_OTG_FS_HCD_Init();
+  MX_I2S3_Init();
+  MX_SDMMC2_SD_Init();
+  MX_SPI4_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
